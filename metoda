@@ -1,0 +1,40 @@
+using System;
+
+namespace FactoryMethod
+{
+    public class Person
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public static int id;
+
+    }
+    
+
+    // Nie zmieniaj poniższej klasy!
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            PersonFactory pf = new PersonFactory();
+            var geralt = pf.CreatePerson("Geralt");
+            var ciri = pf.CreatePerson("Ciri");
+            Console.WriteLine(geralt.Name + " " + geralt.Id);
+            Console.WriteLine(ciri.Name + " " + ciri.Id);
+        }
+    }
+
+    internal class PersonFactory 
+    {
+        public static int Id = 0;
+        public  Person CreatePerson(string v)
+        {
+            var osoba = new Person();
+            osoba.Name = v ;
+           osoba.Id = Id;
+            Id++;
+           return osoba;
+        }
+    }
+
+}
